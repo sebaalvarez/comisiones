@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-06-27T12:00:56 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Comisiones" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac3ce318-ca81-4521-b041-68565db09d51">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQLServer-Comisiones"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<parameter name="REPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["C:\\Users\\Seba\\Documents\\Repositorios\\solucionesit.salvarez\\trunk\\ProyectosSecretaria\\Comisiones\\src\\sec\\comisiones\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMAGENES_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["C:\\Users\\Seba\\Documents\\Repositorios\\solucionesit.salvarez\\trunk\\ProyectosSecretaria\\Comisiones\\WebContent\\WEB-INF\\images\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="filtro" class="java.lang.String">
+		<defaultValueExpression><![CDATA["AND c.id=21"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT c.userCreacion, c.id,CONVERT(nvarchar(10),c.fecha,103) AS fecha,
+	ISNULL(c.idEstado,0) AS idEstado,ISNULL(c.idArea,0) AS idArea, 
+	ISNULL(c.idPrograma,0) AS idPrograma, ISNULL(c.idSolicitante,0) AS idSolicitante,ISNULL(c.motivo,'') AS motivo, 
+	c.fechaHoraSalida,
+	CONVERT(nvarchar(10),c.fechaHoraSalida,103) AS FechaSalida,CONVERT(nvarchar(10),c.fechaHoraSalida,108) AS HoraSalida,
+	c.fechaHoraRegreso,
+	CONVERT(nvarchar(10),c.fechaHoraRegreso,103) AS FechaRegreso,CONVERT(nvarchar(10),c.fechaHoraRegreso,108) AS HoraRegreso,
+	ISNULL(c.tiempoDuracion,0) AS duracion, ISNULL(c.reqVehiculo,0) AS reqVehiculo,
+	CONVERT(nvarchar(10),c.fechaAutorizacion,103) AS fechaAutorizacion, ISNULL(c.userAutorizacion,0) AS idAutorizador, ISNULL(c.autorizada,0) AS autorizada, 
+	ISNULL(e.nombre,'') AS descEstado, 
+	ISNULL(a.descripcion,'') AS descArea, 
+	ISNULL(p.descripcion,'') AS descPrograma, 
+	(ISNULL(emp.apellido,'')+', '+ISNULL(emp.nombre,'')) AS descSolicitante, 
+	(ISNULL(emp1.apellido,'')+', '+ISNULL(emp1.nombre,'')) AS descAutorizador, 
+    dbo.concatenaLocalidades(c.id) AS localidades
+FROM Comisiones c 
+		LEFT JOIN Estados e ON c.idEstado=e.id 
+		LEFT JOIN Areas a ON c.idArea=a.id 
+		LEFT JOIN Programas p ON c.idPrograma=p.id 
+		LEFT JOIN Empleados emp ON c.idSolicitante=emp.id 
+		LEFT JOIN Empleados emp1 ON c.userAutorizacion=emp1.id 
+
+WHERE 1=1 $P!{filtro}]]>
+	</queryString>
+	<field name="userCreacion" class="java.lang.Integer"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="idEstado" class="java.lang.Integer"/>
+	<field name="idArea" class="java.lang.Integer"/>
+	<field name="idPrograma" class="java.lang.Integer"/>
+	<field name="idSolicitante" class="java.lang.Integer"/>
+	<field name="motivo" class="java.lang.String"/>
+	<field name="fechaHoraSalida" class="java.sql.Timestamp"/>
+	<field name="FechaSalida" class="java.lang.String"/>
+	<field name="HoraSalida" class="java.lang.String"/>
+	<field name="fechaHoraRegreso" class="java.sql.Timestamp"/>
+	<field name="FechaRegreso" class="java.lang.String"/>
+	<field name="HoraRegreso" class="java.lang.String"/>
+	<field name="duracion" class="java.math.BigDecimal"/>
+	<field name="reqVehiculo" class="java.lang.Boolean"/>
+	<field name="fechaAutorizacion" class="java.lang.String"/>
+	<field name="idAutorizador" class="java.lang.Integer"/>
+	<field name="autorizada" class="java.lang.Boolean"/>
+	<field name="descEstado" class="java.lang.String"/>
+	<field name="descArea" class="java.lang.String"/>
+	<field name="descPrograma" class="java.lang.String"/>
+	<field name="descSolicitante" class="java.lang.String"/>
+	<field name="descAutorizador" class="java.lang.String"/>
+	<field name="localidades" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="3" y="14" width="550" height="25" backcolor="#FFFFFF" uuid="f0d6da23-4ecc-4534-b161-0324e64f5ef9">
+					<property name="local_mesure_unitheight" value="pixel"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Anticipo de Fondos - Comisión de Servicios]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="322" splitType="Stretch">
+			<rectangle>
+				<reportElement x="153" y="136" width="258" height="35" uuid="4dc93617-e18f-4770-8461-0b95c9d14478"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="16" y="28" width="525" height="92" uuid="09f80a22-64c3-4e3a-979f-1c2da7af34d7">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="16" y="30" width="114" height="11" uuid="9067c26a-9847-402a-a54a-8cc16d1a0f13"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unidad de Organización:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="58" width="114" height="11" uuid="3c2a0378-358e-4c6f-a75b-da80eb1c995d"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motivo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="44" width="114" height="11" uuid="f2da0de8-4f13-4fa7-a934-86d402e915d4">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destinos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="139" width="106" height="11" uuid="9df730dd-dd8d-46f2-b002-83cbff535193"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha/Hora Salida:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="157" width="106" height="11" uuid="8d1aa391-8e08-4fa9-97ca-b2cde4618cd1">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha/Hora Regreso:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="133" y="30" width="407" height="11" uuid="30546a06-28c9-4ae0-8f43-d6423474cb84">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descArea} +" - "+ $F{descPrograma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="264" y="139" width="66" height="11" uuid="53b28c58-89ed-48b6-931e-cceec2ca83c3">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FechaSalida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="139" width="72" height="11" uuid="21500d3b-7d7e-4889-a26a-8f44923d1f7d">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HoraSalida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="264" y="157" width="66" height="11" uuid="c5ac0787-9cff-4b22-893a-784da76d0b5d">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FechaRegreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="157" width="72" height="11" uuid="4d2c8d07-9640-4d6e-a4b7-a0ad48247a01">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HoraRegreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="58" width="407" height="60" uuid="9e4b6263-f5f4-42c1-8035-5046e211a3da"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{motivo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="16" y="42" width="525" height="1" uuid="8d80f7fb-17bf-444f-9941-6f3cecc13322">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="16" y="56" width="525" height="1" uuid="35aa5fb3-f00d-4061-9415-85deb573bee6">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="131" y="28" width="1" height="92" uuid="9259d418-fad0-4fdf-a54f-5282ae548f0f">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="153" y="153" width="257" height="1" uuid="2f4e6e7b-51f7-48a0-b2cf-24c185cc04c3">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="260" y="136" width="1" height="35" uuid="05030b61-1d38-4413-a084-69c54faf58b9">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="332" y="136" width="1" height="35" uuid="4ab30aad-3d19-448e-9861-b07b54525c98">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="7" y="11" width="546" height="11" uuid="6b1dfd06-dea6-4104-b69e-a08734999e81">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Solicito anticipo de fondos (viáticos, gtos., combustible, etc.) con cargo de oportuna rendición de cuentas]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="10" y="194" width="531" height="127" uuid="68e18a4d-d99c-4205-b701-fa6cfd22f2ea"/>
+				<subreportParameter name="Parameter1">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{REPORT_DIR}+"SubRepComisionadosAnticipoFondos.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="133" y="44" width="407" height="11" uuid="9c9dc3c8-8b2f-4203-8e8e-adc7a42e680b">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{localidades}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="361" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<line>
+				<reportElement x="-2" y="351" width="558" height="1" uuid="a489d622-a6e2-4cd4-900b-f0fb52520fba">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="3" y="13" width="550" height="24" uuid="ba2224ec-cc53-4c49-85b9-0679a65a0400"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[La presente comisión debe ser rendida dentro de las 48hs de finalizada, caso contrario autorizamos a descontar los importes pendientes de rendición de nuestros haberes o comisiones a cobrar.]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="16" y="41" width="525" height="96" uuid="e367e781-aa7f-431e-9480-ec81a8e158b9">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+			</rectangle>
+			<line>
+				<reportElement x="16" y="115" width="525" height="1" uuid="310cdd1a-a1f4-4106-8f8e-2875f92e1f82">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="214" y="41" width="1" height="96" uuid="abd6d9e3-7985-44e0-a9f9-3122ff37915d">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="326" y="41" width="1" height="96" uuid="ba54a75f-c6a5-469d-ba21-e07920dd03db">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="436" y="41" width="1" height="96" uuid="c9404619-8ecd-46ff-abcc-a182a279c814">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="16" y="116" width="199" height="21" uuid="29d36636-dfb2-48bd-8575-71ef1b725065">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Firma de los comisionados (9)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="116" width="109" height="21" uuid="4c6a3786-a6c3-472d-8efb-1496d835d08f">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Firma del funcionario autorizante (10)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="436" y="116" width="107" height="21" uuid="2abc8f6d-d797-44e1-bb70-5326fbaa878c">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Firma de 
+autoridad superior]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="327" y="116" width="109" height="21" uuid="0526e8f2-81fb-4a1f-a88c-8906e474f9b7">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Autorización    
+S.A.F. (11)]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="16" y="162" width="525" height="107" uuid="dabf4bef-6839-4c06-9174-a433bdb65b4f">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+			</rectangle>
+			<line>
+				<reportElement x="230" y="176" width="1" height="93" uuid="b88d4e1c-b3f7-40ee-a05f-1b190da25edd">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="438" y="162" width="1" height="107" uuid="2878482e-d3fc-436e-9b15-dbd7a913f39a">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="16" y="175" width="525" height="1" uuid="375a0082-0387-42a4-83cb-e30697bf2b8c">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="110" y="189" width="1" height="80" uuid="f2496f6f-65f7-4232-bf4e-dfea51086444">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="16" y="189" width="422" height="1" uuid="79aaba3a-cf95-4465-bf3f-d8da757c8e67">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="333" y="189" width="1" height="80" uuid="0db9c965-9bb6-4e52-8d08-f4127698e186">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="16" y="202" width="422" height="1" uuid="fd40004b-3bde-41f7-8510-ee6d88a02957">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="16" y="215" width="422" height="1" uuid="e7a0ea52-fe6d-4a5e-a7ec-237afa23393a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="16" y="228" width="422" height="1" uuid="8b650503-af77-42e3-8720-981fcd0f07ae">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="16" y="241" width="422" height="1" uuid="90bc8451-7a5c-43bc-8552-3381e07bcf41">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="16" y="254" width="422" height="1" uuid="768f30c2-35c4-4d9e-982c-5eb711d6da1f">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="10" y="301" width="258" height="49" uuid="d4ce64a1-f942-4b2a-8479-96f92463291e"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[(1) Indicar Unidad de Organización correspondiente.
+(2) Destino/s de la comisión.
+(3) Actividades a realizar en el o los destinos.
+(4) Fecha y hora de salida.
+(5) Fecha y hora de regreso
+(6) Importe estimado para gastos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="293" width="100" height="11" uuid="c55ca901-ec31-4cc2-9c82-a3c0cb359ea2">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement>
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Referencias:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="301" width="275" height="49" uuid="0ec60cb5-ae11-4451-bd3e-22cb2b3a8c4f"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[(7) Importe estimado para gastos de combustible
+(8) Total del anticipo
+(9) Firma de los comisionados
+(10) Firma del funcionario autorizante
+(11) Autorización del Administrador Gral del SAF, prestando conformidad contable del Anticipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="163" width="100" height="11" uuid="0f78c773-753d-4a15-93b4-da084d805b71"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Observaciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="163" width="431" height="11" uuid="b34c0532-fa7e-4d07-b5e7-6e84d5a2ea36"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Detalles Liquidación Comisión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="177" width="100" height="11" uuid="a05a1911-b625-432f-8d3f-563a375def24"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[PX - PV N�]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="177" width="100" height="11" uuid="d7fcd9a7-31ee-4a63-8ac6-e544c0e0f27b"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Batch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="190" width="100" height="11" uuid="4c44cfa2-a231-4108-9d3b-78b0ac4ae44c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Orden N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="190" width="100" height="11" uuid="b99dda13-1e3e-49a5-b099-a7af22a00752"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Orden N°]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="465" y="353" width="88" height="8" uuid="fa222d42-bea0-4231-8873-35b2bbd5dab4"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Impreso: "+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-2" y="289" width="558" height="1" uuid="a4fc6c39-48f8-4581-8e32-0ff2d505b413">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

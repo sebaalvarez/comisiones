@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-06-27T10:26:11 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteAnualDesmonte" pageWidth="444" pageHeight="112" columnWidth="434" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" isSummaryNewPage="true" uuid="c633696c-2cf7-4fef-8763-15f67f6ab885">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQLServer-Comisiones"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<parameter name="REPORT_DIR" class="java.lang.String">
+		<parameterDescription><![CDATA[Path de Reportes]]></parameterDescription>
+		<defaultValueExpression><![CDATA["C:\\Users\\Seba\\Documents\\Secretaria Ambiente\\Proyectos\\WorkSpaceProyectos\\SIF\\src\\sec\\sif\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMAGENES_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["C:\\Users\\Seba\\Documents\\Secretaria Ambiente\\Proyectos\\WorkSpaceProyectos\\SIF\\WebContent\\WEB-INF\\images\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Parameter1" class="java.lang.String">
+		<defaultValueExpression><![CDATA["21"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT dc.id, dc.idComision, dc.idEmpleado, ISNULL(e.apellido,'') +', '+ ISNULL(e.nombre,'') AS DescComisionado  
+FROM DetallesComisionados dc INNER JOIN Empleados e ON dc.idEmpleado=e.id
+WHERE dc.idComision=$P{Parameter1}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="idComision" class="java.lang.Integer"/>
+	<field name="idEmpleado" class="java.lang.Integer"/>
+	<field name="DescComisionado" class="java.lang.String"/>
+	<detail>
+		<band height="12">
+			<textField>
+				<reportElement x="4" y="0" width="286" height="11" uuid="a9500c70-c214-42f6-bd10-75341e72b331">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DescComisionado}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="-1" width="1" height="12" uuid="8937ff2e-6a4a-4171-a50e-93182480eaa0">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="0" y="11" width="449" height="1" uuid="bb5ac958-cc41-4f50-ae4a-d09a1c8ec7ef">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

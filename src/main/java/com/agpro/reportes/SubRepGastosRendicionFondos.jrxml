@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-06-22T13:55:46 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteAnualDesmonte" pageWidth="464" pageHeight="246" columnWidth="454" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" isSummaryNewPage="true" uuid="c633696c-2cf7-4fef-8763-15f67f6ab885">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQLServer-Comisiones"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<parameter name="REPORT_DIR" class="java.lang.String">
+		<parameterDescription><![CDATA[Path de Reportes]]></parameterDescription>
+		<defaultValueExpression><![CDATA["C:\\Users\\Seba\\Documents\\Secretaria Ambiente\\Proyectos\\WorkSpaceProyectos\\SIF\\src\\sec\\sif\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMAGENES_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["C:\\Users\\Seba\\Documents\\Secretaria Ambiente\\Proyectos\\WorkSpaceProyectos\\SIF\\WebContent\\WEB-INF\\images\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Parameter1" class="java.lang.String">
+		<defaultValueExpression><![CDATA["3"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT dgc.id, dgc.idComision, dgc.idEmpleado, CONVERT(nvarchar(10),dgc.fecha,103) AS fecha, 
+	ISNULL(dgc.concepto,'') AS concepto, ISNULL(dgc.importe,0) AS importe, r.id AS idRendicion
+FROM Rendiciones r 
+	LEFT JOIN  DetallesGastosComisionados dgc  ON r.idComision=dgc.idComision AND r.idComisionado=dgc.idEmpleado
+WHERE r.id=$P{Parameter1}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="idComision" class="java.lang.Integer"/>
+	<field name="idEmpleado" class="java.lang.Integer"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="concepto" class="java.lang.String"/>
+	<field name="importe" class="java.math.BigDecimal"/>
+	<field name="idRendicion" class="java.lang.Integer"/>
+	<variable name="SUMTotal" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{importe}]]></variableExpression>
+	</variable>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{idComision} +"-"+ $F{idEmpleado}]]></groupExpression>
+		<groupHeader>
+			<band height="11">
+				<rectangle>
+					<reportElement x="0" y="0" width="454" height="11" uuid="724ea15f-09c3-484b-bda9-451d923db839">
+						<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+						<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					</reportElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="4" y="0" width="96" height="11" uuid="92a65714-64da-4c4c-81e2-fe7075489b38"/>
+					<textElement textAlignment="Center">
+						<font fontName="SansSerif" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="109" y="0" width="256" height="11" uuid="a2a63915-11ce-410b-aa91-3f4fdbc6b396"/>
+					<textElement textAlignment="Center">
+						<font fontName="SansSerif" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Concepto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="370" y="0" width="78" height="11" uuid="16a64de1-40d6-4251-8c1a-bd95fd2d904a">
+						<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font fontName="SansSerif" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Importe]]></text>
+				</staticText>
+				<line>
+					<reportElement x="107" y="0" width="1" height="11" uuid="cad19c85-3faf-4fba-afc3-cac8ef45351b">
+						<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="368" y="0" width="1" height="11" uuid="d8b7baff-347a-4f0f-bdef-659c17180a44">
+						<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					</reportElement>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="26">
+				<line>
+					<reportElement x="453" y="11" width="1" height="14" uuid="96f731c5-9500-4cf8-ae8c-cc6b15285576"/>
+				</line>
+				<line>
+					<reportElement x="0" y="12" width="1" height="14" uuid="a438fa94-f8c4-4ddd-8e76-70427ca9c968"/>
+				</line>
+				<line>
+					<reportElement x="368" y="11" width="1" height="14" uuid="bbf29167-9d4d-4eb9-8881-85ef2dff7c31"/>
+				</line>
+				<line>
+					<reportElement x="0" y="25" width="453" height="1" uuid="88f53fb4-14f1-4ead-baaa-fa1ad8f956b6">
+						<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+						<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					</reportElement>
+				</line>
+				<staticText>
+					<reportElement x="263" y="13" width="102" height="11" uuid="0175255f-6772-49d3-afaa-5ac5a6aa3f92"/>
+					<textElement textAlignment="Right">
+						<font fontName="SansSerif" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total  o SubTotal]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="370" y="13" width="80" height="11" uuid="fae9a704-3f52-4e0a-951c-416c7fd6ee9d">
+						<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="SansSerif" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["$ "+ new DecimalFormat("##,##0.00").format($V{SUMTotal})]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="11" width="453" height="1" uuid="b8a2e936-256c-4ef7-9e0a-0934dd1abe14">
+						<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+						<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="453" y="0" width="1" height="11" uuid="b86773d7-8b74-4500-b058-844245c1074a">
+						<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="0" y="0" width="1" height="11" uuid="526bf8e4-1cea-4120-9851-f4a2e864ec65">
+						<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="107" y="0" width="1" height="11" uuid="717bf2a8-6268-43e1-bc0c-dc4fc0ce466e">
+						<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					</reportElement>
+				</line>
+				<line>
+					<reportElement x="368" y="0" width="1" height="11" uuid="0e7267ad-f51d-4fd2-be6f-3192630e5e25"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="14">
+			<textField isBlankWhenNull="true">
+				<reportElement x="3" y="1" width="103" height="11" isRemoveLineWhenBlank="true" uuid="a9500c70-c214-42f6-bd10-75341e72b331">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="1" height="14" uuid="125a8375-829f-43dd-aed1-2481230bdaba"/>
+			</line>
+			<line>
+				<reportElement x="368" y="-1" width="1" height="14" uuid="a6d8efc6-a235-44fc-ba77-4b2ea6fe796e"/>
+			</line>
+			<line>
+				<reportElement x="453" y="0" width="1" height="14" uuid="ba36160a-1c8b-47ac-b432-260992b3351e"/>
+			</line>
+			<line>
+				<reportElement x="0" y="13" width="453" height="1" uuid="dcfcc1c0-7251-4fea-9483-fbce077bfcc9">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="1" width="256" height="11" isRemoveLineWhenBlank="true" uuid="09afefe6-f591-4a15-9461-fab4ea797129">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{concepto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="370" y="1" width="80" height="11" isRemoveLineWhenBlank="true" uuid="f11100f3-96c4-4ebf-b9b6-f4f514435045">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["$ "+new DecimalFormat("##,##0.00").format($F{importe})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="107" y="0" width="1" height="14" uuid="c218397b-8e78-4af6-be2c-765d892764bd"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

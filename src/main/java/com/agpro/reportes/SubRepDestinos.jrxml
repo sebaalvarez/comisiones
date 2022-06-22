@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-05-15T10:14:53 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteAnualDesmonte" pageWidth="170" pageHeight="141" columnWidth="160" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" isSummaryNewPage="true" uuid="c633696c-2cf7-4fef-8763-15f67f6ab885">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQLServer-Comisiones"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<parameter name="REPORT_DIR" class="java.lang.String">
+		<parameterDescription><![CDATA[Path de Reportes]]></parameterDescription>
+		<defaultValueExpression><![CDATA["C:\\Users\\Seba\\Documents\\Secretaria Ambiente\\Proyectos\\WorkSpaceProyectos\\SIF\\src\\sec\\sif\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMAGENES_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["C:\\Users\\Seba\\Documents\\Secretaria Ambiente\\Proyectos\\WorkSpaceProyectos\\SIF\\WebContent\\WEB-INF\\images\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Parameter1" class="java.lang.String">
+		<defaultValueExpression><![CDATA["21"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT dc.id, dc.idComision,dc.idLocalidad, ISNULL(l.nombre,'') AS DescLocalidad  
+FROM DetallesDestinos dc INNER JOIN Localidades l ON dc.idLocalidad=l.id
+WHERE dc.idComision=$P{Parameter1}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="idComision" class="java.lang.Integer"/>
+	<field name="idLocalidad" class="java.lang.Integer"/>
+	<field name="DescLocalidad" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="15">
+			<rectangle>
+				<reportElement x="0" y="0" width="160" height="15" forecolor="#030303" uuid="6bd235ec-261e-423c-828b-d57b24e5560c"/>
+			</rectangle>
+			<textField>
+				<reportElement x="4" y="1" width="150" height="14" uuid="a9500c70-c214-42f6-bd10-75341e72b331">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{DescLocalidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

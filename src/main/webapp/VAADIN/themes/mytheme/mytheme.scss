@@ -1,0 +1,542 @@
+// If you edit this file you need to compile the theme. See README.md for details.
+
+// Global variable overrides. Must be declared before importing Valo.
+
+// Defines the plaintext font size, weight and family. Font size affects general component sizing.
+$v-font-size: 12px; 
+$v-font-weight: 400;
+$v-font-family: "Open Sans", sans-serif;
+
+// Defines the border used by all components.
+$v-border: 1px solid (v-shade 0.7);
+$v-border-radius: 4px;
+
+// Affects the color of some component elements, e.g Button, Panel title, etc
+$v-background-color: hsl(210, 0%, 98%);
+
+// Affects the color of content areas, e.g  Panel and Window content, TextField input etc
+$v-app-background-color: hsl(210, 0%, 98%); //$v-background-color;
+
+// Affects the visual appearance of all components
+$v-gradient: v-linear 8%;
+$v-bevel-depth: 30%;
+$v-shadow-opacity: 5%;
+
+// Defines colors for indicating status (focus, success, failure)
+$v-focus-color: valo-focus-color(); // Calculates a suitable color automatically
+$v-friendly-color:  #2c9720;
+$v-error-indicator-color: #ed473b;
+// For more information, see: https://vaadin.com/book/-/page/themes.valo.html
+// Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
+
+@import "../valo/valo.scss";
+
+@mixin mytheme {
+  @include valo;
+
+  
+  
+   	.v-caption-horizontal {
+  		display: inline-block;
+  	}
+  
+  
+    
+    .v-ui > .v-widget {
+	   	overflow: visible;
+	}
+	
+	.v-scrollable > .v-widget{
+		overflow: visible;
+	}
+	
+	.v-splitPanel-first-container {
+		height: 100%;
+		width: 0%; 
+	}
+	
+	.v-splitPanel-horizontal .v-splitPanel-hSplitter {
+	    position: absolute; 
+	    height: 100%; 
+	    top: 0px; 
+	    left: 60px;
+	}
+
+	.stylingExample .v-textfield .v-readOnly {
+    		font-style: italic;
+    		border: thin solid gray;    
+	}
+
+
+
+	
+	
+	.v-filterselect button {
+	    color: black;
+	}
+	
+	
+	
+	
+	
+/*	
+	.v-app, .v-window, .v-popupview-popup, .v-tooltip, .v-app input, .v-app select, 
+	.v-app button, .v-app textarea, .v-window input, .v-window select, 
+	.v-window button, .v-window textarea, .v-popupview-popup input, 
+	.v-popupview-popup select, .v-popupview-popup button, 
+	.v-popupview-popup textarea, .v-filterselect-suggestpopup, 
+	.v-datefield-popup, .v-contextmenu, .v-notification, .v-menubar-submenu, 
+	.v-drag-element, .v-customoverlay, .v-button-link .v-button-caption {
+  		color: #222;
+  		font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+  		font-size: 11px;
+  		background: gray;
+	}
+*/	
+
+	
+	.v-panel,
+	.v-window, .v-window input, .v-window select, 
+	.v-popupview-popup, .v-popupview-popup input, .v-popupview-popup select {
+  		//color: #222;
+  		//font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+  		//font-size: 11px;
+  		background: #f0f0f0;
+	}
+    
+    
+   .v-window-header {
+   		width: 100%;
+		font-weight: bold;
+    		color: white;
+		background: #1979dc;
+		margin-right: -20px;
+
+	}
+ 
+    
+    .v-window-maximizebox, .v-window-closebox, .v-window-restorebox {
+    		font-weight: bold;
+    		color: white;
+		background: #1979dc;
+
+	}
+    
+    .v-window-maximizebox-disabled + .v-window-closebox-disabled {
+   	 	width: 28px;
+		font-weight: bold;
+    		color: red;
+		background: #1979dc;
+		margin-right: 0px;
+	}
+
+
+	.v-window-maximizebox-disabled + .v-window-closebox {
+	    width: 28px;
+	    padding-right: 0;
+	    border-bottom-left-radius: 0px;
+	    font-weight: bold;
+    		color: white;
+	}
+
+
+//   .v-label {
+		//  	font-size: 13px;
+		//	font-weight: 900;
+		//	font-family: "Open Sans", sans-serif;
+	    //	color: black;
+	    //	text-align: center;
+	    //	background: gray;
+	    // 	height: 28px;
+//	}
+		
+		
+
+	.v-textfield, .v-filterselect input, .v-textarea, .v-select {
+
+		//	padding-top: 3px;
+		padding-right: 3px;
+		//  padding-bottom: 3px;
+	   	padding-left: 3px;
+	}
+
+
+	.v-filterselect-input:disabled, .v-textfield:disabled, .v-textarea:disabled, .v-select-select:disabled {
+   		//font-size: 10px;
+		font-weight: bold;
+		font-style: italic;
+		//font-family: "Open Sans", sans-serif;
+	    	color: black;
+	    	//text-align: center;
+	    	background: #f0f0f0;
+	    	//height: 20px;
+	}
+  
+
+  	.v-filterselect-input:disabled button {
+
+	    color: #676767;
+
+	}
+ 
+   
+ 
+   
+   
+   
+    .v-button {
+	 // 	background-color: #d5d9e0;
+	 	margin: 12px;
+	    	height: 30px;
+	    	width: 90px; 
+	    	border-radius: 6px;
+    		//border-top-left-radius: 4px;
+    		//border-top-right-radius: 4px;
+    		//border-bottom-right-radius: 4px;
+    		//border-bottom-left-radius: 4px;
+	    	
+		.v-button-caption {
+		//	display: block;
+			color: black;
+		//	white-space: normal;
+			text-align: center;
+			font-size: 18px;
+			font-weight: 1500;
+		//	font-family: "Open Sans", sans-serif;
+			}	
+	}
+	
+	    
+	.v-nativebutton:enabled:hover {
+    		background-color: #67a8ef;
+	}
+
+	 .v-nativebutton {  
+	 	 height: 28px;
+	   // background-image: linear-gradient(to bottom,#gagaga 60%, #efefef 98%);
+	    //	background-color: linear-gradient(to bottom,#gagaga 60%, #efefef 98%);
+		.v-nativebutton-caption {
+			//display: block;
+			//color: blue;
+			//white-space: normal;
+			//font-size: 18px;
+			text-align: center;		
+		}
+	  }  
+	    
+	    
+	.btn:enabled:hover {
+    		background-color: #67a8ef;
+	}
+
+
+	.btn {
+		font-size: 16px;
+		text-align: center;	
+  
+	}
+
+
+	.btnCenter:enabled:hover {
+    		background-color: #67a8ef;
+	}
+
+
+	.btnCenter {
+		text-align: center;	
+  
+	}
+
+	.v-textfield:enabled  {
+		background: white;
+      	//text-align: center;
+	}
+
+
+
+
+	.v-textfield.numeroDerecha {
+    		text-align: right;
+    		text-format: "###,###,##0.00";
+	}
+	
+    .v-textfield.numeroCentro {
+    		text-align: center;
+	}
+
+	.v-textfield-dashing {
+    		border:     thin dashed;
+    		background: white; /* Has shading image by default */
+	}
+	
+	
+	.v-textfield.id {
+    		text-align: right;
+    		text-format: "##########0";
+	}
+	
+	
+	
+	.fondoRojo {
+    		.v-filterselect-input:disabled, .v-textfield:disabled, .v-textarea:disabled, .v-select-select:disabled {
+   		//font-size: 10px;
+		font-weight: bold;
+		font-style: italic;
+		//font-family: "Open Sans", sans-serif;
+	    	color: black;
+	    	//text-align: center;
+	    	background: red;
+	    	//height: 20px;
+	}
+	}
+
+
+	.labelBlanco {
+		color: white;
+	}
+  
+
+	.negritaCentrado {
+		font-size: 17px;
+		font-weight: bold;
+		text-align: center;
+		background: #ededf9;
+	}
+ 
+ 
+    .btnCentrado {
+      	text-align: center;
+    }
+    
+    
+    	.letraChica  {
+			font-size: 10px;
+			font-weight: 200;
+			font-family: "Open Sans", sans-serif;
+	    	color: black;
+	    	text-align: center;
+	    	//background: red;
+	    	//height: 20px;
+    }
+
+	.alerta  {
+		font-size: 14px;
+		font-weight: 800;
+		font-family: "Open Sans", sans-serif;
+	    	color: red;
+	    	text-align: center;
+	    	//background: red;
+	    	//height: 20px;
+    }
+    
+    
+	.letraTitulo  {
+		font-size: 50px;
+		font-weight: bold;
+		font-style: italic;
+		font-family: "Open Sans", sans-serif;
+	    	color: black;
+	    	text-align: center;
+	    	//background: red;
+	    	//height: 20px;
+    }  
+   
+   	.letraTituloGrande  {
+		font-size: 70px;
+		font-weight: bold;
+		font-style: italic;
+		font-family: "Open Sans", sans-serif;
+	    	color: black;
+	    	text-align: center;
+	    	//background: red;
+	    	//height: 20px;
+    }  
+   
+    .tablaCuerpo{
+    		height: 96%;
+    		weight: 100%;
+    		margin: 0.1em;
+    }
+    
+
+    .botonChico{
+    		font-size: 11px;
+		font-weight: 1000;
+		font-family: HelveticaRounded;
+    		color: white;
+    		text-align: center;
+    		background: gray;
+    }
+   
+   
+   
+   .fondoPrincipal{
+    		background: #f0f0f0;
+    }
+
+
+
+    
+//    .v-button-primary {
+//    	background-color: #d5d9e0;
+//    	height: 48px;
+//    	width: 60px; 
+//    }
+   
+ 
+ 	.v-table-row.v-table-row-highlight-green,
+	.v-table-row-odd.v-table-row-highlight-green {
+	  	background-color: green;
+	}
+
+	
+	.v-table-row.v-table-row-highlight-red,
+	.v-table-row-odd.v-table-row-highlight-red {
+	  	background-color: red;
+	}
+
+	.v-table-row.v-table-row-highlight-blue,
+	.v-table-row-odd.v-table-row-highlight-blue {
+	  	background-color: blue;
+	}
+	
+	
+ 	.v-table-row.v-table-row-rojoRow,
+	.v-table-row-odd.v-table-row-rojoRow {
+	  	background-color: #f76969;
+	}
+
+ 	.v-table-row.v-table-row-verdeRow,
+	.v-table-row-odd.v-table-row-verdeRow {
+	  	background-color: #52bf6b;
+	}
+
+	.v-table-row.v-table-row-azulRow,
+	.v-table-row-odd.v-table-row-azulRow {
+	  	background-color: #6ea1f3;
+	}
+ 
+ 	.v-table-row.v-table-row-amarilloRow,
+	.v-table-row-odd.v-table-row-amarilloRow {
+	  	background-color: #e6e463;
+	}
+ 
+ 	.v-table-row.v-table-row-naranjaRow,
+	.v-table-row-odd.v-table-row-naranjaRow {
+	  	background-color: #fbc386;
+	}
+
+	.v-table-row.v-table-row-rosaRow,
+	.v-table-row-odd.v-table-row-rosaRow {
+	  	background-color: #efc1be;
+	}
+
+	.v-table-row.v-table-row-lilaRow,
+	.v-table-row-odd.v-table-row-lilaRow {
+	  	background-color: #f5aeef;
+	}
+
+
+    .versionMobil {
+    
+    		.v-label {
+    			font-size: 20px;
+			font-weight: 900;
+			font-family: "Open Sans", sans-serif;
+	    //	color: black;
+	    //	text-align: center;
+	    //	background: gray;
+	       	height: 28px;
+		}
+		
+	    //.letraGrande 
+	    .v-textfield {
+	    		font-size: 20px;
+			font-weight: 900;
+			font-family: "Open Sans", sans-serif;
+	    //	color: black;
+	    //	text-align: center;
+	    //	background: gray;
+	       	height: 28px;
+	    }
+	    
+	    .v-filterselect-input,.v-window .v-filterselect-input,.v-popupview-popup .v-filterselect-input {
+	    		font-size: 20px;
+			font-weight: 900;
+			font-family: "Open Sans", sans-serif;
+	    //	color: black;
+	    //	text-align: center;
+	    	//	background: gray;
+	       	height: 28px;
+	    }
+	    
+	    //.botonGrande
+	    .v-nativebutton {
+		    	margin: 5px;
+		    //	height: 50px;
+		    //	width: 120px; 
+		    		
+		    	.v-nativebutton-caption {
+		    		font-size: 20px;
+				font-weight: 1000;
+				//font-family: HelveticaRounded;
+		    		//color: white;
+		    		text-align: center;
+		    		//background: gray;
+		    	}
+	    }
+	    //.captionGrande 
+	    .v-caption {
+	    		font-size: 18px;
+			font-weight: 900;
+			font-family: "Open Sans", sans-serif;
+	    		color: black;
+	    }
+	     
+	    
+	 }   
+    
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	.v-Notification-system {
+		margin: 10px !important;
+		border-radius: 50px;
+		background-color: #f31000;
+		line-height: 10px;
+	}
+	
+	.v-loading-indicator-wait {
+		width: 96%; 
+		background: #ff0000 url(../valo/shared/img/spinner.gif) no-repeat 100%;
+	}
+	
+	.v-loading-indicator-delay {
+		width: 90%;
+		background: #dbdbdb url(../valo/shared/img/spinner.gif) no-repeat 100%;
+	}
+	
+	.v-loading-indicator {
+		height: 25px;
+		margin-top: 5px;
+		border-radius: 10px;
+		background: #dbdbdb url(../valo/shared/img/spinner.gif) no-repeat 100%;
+	}
+  
+  
+  
+
+
+  
+  
+
+
+
+
+
+}
